@@ -18,18 +18,18 @@ app.get("/", (req, res) => {
 
 //fetching weather forecast for a particular city
 app.get("/weather", async (req, res) => {
-    if (!req.query.city) {
-      res.status(404).json("City is missing");
-    } else {
-      let city = req.query.city;
-      const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`
-      );
-  
-      const data = await response.json();
-      res.status(200).json(data);
-    }
-  });
+  if (!req.query.city) {
+    res.status(404).json("City is missing");
+  } else {
+    let city = req.query.city;
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`
+    );
+
+    const data = await response.json();
+    res.status(200).json(data);
+  }
+});
 
 //creating server
 app.listen(port, () => {
